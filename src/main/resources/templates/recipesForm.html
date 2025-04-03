@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout.html::head}"></head>
+
+<body>
+
+<nav th:replace="~{layout.html::nav}">
+
+</nav>
+  <form th:object="${recipe}" method="post">
+    <label for="name">Nazwa: </label>
+    <input id="name" type="text" required th:field="*{name}"/><br>
+
+
+
+    <input type="submit" value="Add"/>
+  </form>
+</body>
+</html>

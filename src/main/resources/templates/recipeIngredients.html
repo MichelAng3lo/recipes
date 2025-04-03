@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout.html::head}"></head>
+
+<body>
+
+<nav th:replace="~{layout.html::nav}">
+
+</nav>
+<h2 th:text="${recipe.name}">name</h2>
+<a th:href="@{/recipes/{id}(id=${recipe.id})}">
+    <button type="button" class="btn btn-sm btn-outline-secondary">Wróć</button>
+</a>
+<form th:object="${recipeIngredient}" method="post">
+    <fieldset>
+        <table>
+            <thead>
+            <tr>
+                <th> Składnik</th>
+                <th> Ilość</th>
+                <th> Jednostka</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="ri : ${recipe.recipeIngredientList}">
+                <td th:text="${ri.ingredient.name}">1
+
+<!--                    <label>Przepis:</label>-->
+<!--                    <select th:field="*{recipeIngredientList[__${itemStat.index}__].ingredient}">-->
+<!--                        <option th:each="i: ${ingredients}" th:value="${i.id}" th:text="${i.name}" />-->
+<!--                    </select>-->
+                </td>
+                <td th:text="${ri.quantity}">1</td>
+                <td th:text="${ri.unit}">1</td>
+            </tr>
+            <tr >
+                <td>
+                    <input list="ingredients" th:field="*{ingredient.name}">
+                    <datalist id="ingredients">
+                        <option th:each="i: ${ingredients}"  th:text="${i.name}"></option>
+                    </datalist>
+                </td>
+                <td><input th:field="*{quantity}" /></td>
+                <td><input th:field="*{unit}" /></td>
+            </tr>
+            </tbody>
+        </table>
+        <input type="submit" id="submitButton" th:value="Save">
+        <input type="reset" id="resetButton" name="reset" th:value="Reset"/>
+
+    </fieldset>
+</form>
+
+</body>
+</html>

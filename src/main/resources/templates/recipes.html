@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout.html::head}"></head>
+
+<body>
+
+<nav th:replace="~{layout.html::nav}">
+
+</nav>
+<div>
+    <a th:href="@{/recipes/new}">
+        <button type="button" class="btn btn-sm btn-outline-secondary">Dodaj przepis</button>
+    </a>
+</div>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4" th:each="r: ${recipes}">
+                <div class="card mb-4 box-shadow">
+
+                    <div class="card-body">
+                        <p class="card-text" th:text="${r.name}">name</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a th:href="@{/recipes/{id}(id=${r.id})}">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                </a>
+                                <a th:href="@{/recipes/edit/{id}(id=${r.id})}">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

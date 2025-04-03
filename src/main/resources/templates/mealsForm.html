@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout.html::head}"></head>
+
+<body>
+
+<nav th:replace="~{layout.html::nav}">
+
+</nav>
+<div th:text="${data}">a</div>
+<form th:object="${meal}" method="post">
+<!--    th:field="*{date}"-->
+    <label for="date">Data: </label>
+    <input id="date" type="date" name="date" required th:value="${data}"  />
+    <br>
+
+    <label></label>
+    <input type="radio" th:field="*{type}" value="Śniadanie" />Śniadanie
+    <input type="radio" th:field="*{type}" value="Obiad" />Obiad
+    <input type="radio" th:field="*{type}" value="Kolacja" />Kolacja
+    <br>
+
+    <label>Przepis:</label>
+    <select th:field="*{recipe}">
+        <option th:each="r: ${recipes}" th:value="${r.id}" th:text="${r.name}" />
+    </select>
+    <br/>
+
+    <label for="times">Na ile dni: </label>
+    <input id="times" name="times" type="number" min="1" value="1"/>
+
+    <input type="submit" value="Add"/>
+</form>
+</body>
+</html>

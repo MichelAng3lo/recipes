@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout.html::head}"></head>
+
+<body>
+<nav th:replace="~{layout.html::nav}">
+
+</nav>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+
+                    <div class="card-body">
+                        <p class="card-text" th:text="${recipe.name}">name</p>
+<!--                        <p class="card-text" th:text=${#lists.size(recipe.recipeIngredientList)}>name</p>-->
+                        <ul>
+                            <li th:each="ri: ${recipe.recipeIngredientList}" th:text="${ri.ingredient.name}"></li>
+                        </ul>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a th:href="@{/recipes/edit/{id}(id=${recipe.id})}">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                </a>
+                                <a th:href="@{/recipeingredient/add/{id}(id=${recipe.id})}">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Dodaj składniki</button>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
